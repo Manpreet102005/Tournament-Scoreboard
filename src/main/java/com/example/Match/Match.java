@@ -24,8 +24,8 @@ public class Match {
     @JoinColumn(name="team_b_id")
     private Team teamB;
 
-    Match(){}
-    Match(String matchTitle, Team teamA, Team teamB){
+    public Match(){}
+    public Match(String matchTitle, Team teamA, Team teamB){
         this.matchTitle=matchTitle;
         this.teamA=teamA;
         this.teamB=teamB;
