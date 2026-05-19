@@ -45,4 +45,8 @@ public class TeamController {
         return teamService.removeTeam(teamId);
     }
 
+    @PutMapping("{teamId}")
+    public ResponseEntity<String> renameTeam(@PathVariable Integer teamId,String newTeamName){
+        return teamService.renameTeam(teamId,newTeamName);
+    }
 }

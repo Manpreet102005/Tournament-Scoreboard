@@ -54,4 +54,12 @@ public class TeamService {
         return ResponseEntity.ok().body("Player with id: "+player.getId()+" added to team with id: "+teamId+" successfully.");
     }
 
+    public ResponseEntity<String> renameTeam(Integer teamId, String newTeamName) {
+        Team team=teamRepository.findById(teamId).orElseThrow(()->
+                new TeamNotFoundException(teamId));
+        String oldName=team.getTeamName();
+        team.setTeamName(newTeamName);
+        teamRepository.save(team);
+        return ResponseEntity.ok().body("Team with id: "+teamId+" renamed from "+oldName+" to "+newTeamName+" successfully.");
+    }
 }
