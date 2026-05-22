@@ -44,12 +44,12 @@ public class MatchController {
         return matchService.addMatch(match,teamAId,teamBId);
     }
 
-    @PostMapping("reschedule/{matchId}/{newDateTime}")
+    @PutMapping("reschedule/{matchId}/{newDateTime}")
     public ResponseEntity<String> reScheduleMatch(@PathVariable Integer matchId,@PathVariable LocalDateTime newDateTime){
         return matchService.rescheduleMatch(matchId,newDateTime);
     }
 
-    @PostMapping("/{matchId}/{teamId}/{score}")
+    @PutMapping("/{matchId}/{teamId}/{score}")
     public ResponseEntity<String> updateTeamScore(@PathVariable Integer matchId,
                                                   @PathVariable Integer teamId,
                                                   @PathVariable Integer score){
