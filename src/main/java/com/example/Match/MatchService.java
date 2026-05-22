@@ -52,7 +52,7 @@ public class MatchService {
     public ResponseEntity<String> removeMatch(Integer id){
         getMatchById(id);
         matchRepository.deleteById(id);
-        return ResponseEntity.ok().body("Removed Successfully");
+        return ResponseEntity.ok().body("Match with id: "+id+" Removed Successfully");
     }
 
     public ResponseEntity<String> rescheduleMatch(Integer matchId, LocalDateTime newDateTime) {
@@ -63,16 +63,13 @@ public class MatchService {
         }
         match.setMatchDateTime(newDateTime);
         matchRepository.save(match);
-        return ResponseEntity.ok().body("Match Rescheduled Successfully.");
+        return ResponseEntity.ok().body("Match Rescheduled Successfully. New Time: "+newDateTime);
     }
 
     public ResponseEntity<String> updateTeamScore(Integer matchId, Integer teamId, Integer score) {
         Match match=getMatchById(matchId);
-        if(match.getMatchStatus()!=MatchStatus.SCHEDULED){
-            throw new MatchStatusException("Can not update scores before match has started.");
-        }
-        else if(match.getMatchStatus()!=MatchStatus.COMPLETED){
-            throw new MatchStatusException("Can not update scores after match has completed.");
+        if (!match.getMatchStatus().equals(MatchStatus.ONGOING)) {
+            throw new MatchStatusException("Match must be ONGOING to update scores. Current status: " + match.getMatchStatus());
         }
         if(score<0 || score>100){
             throw new InvalidScoreException();
