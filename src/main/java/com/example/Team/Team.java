@@ -20,6 +20,9 @@ public class Team {
     private String teamName;
 
     private Integer totalScore=0;
+    private Integer matchesPlayed=0;
+    private Integer wins=0;
+    private Integer draws=0;
 
     @JsonIgnore
     @OneToMany(mappedBy = "team")
@@ -53,4 +56,16 @@ public class Team {
     public Integer getTotalScore() { return totalScore; }
 
     public void setTotalScore(Integer totalScore) { this.totalScore = totalScore; }
+
+    public Integer getMatchesPlayed() { return matchesPlayed; }
+
+    public void setMatchesPlayed(Integer matchesPlayed) { this.matchesPlayed = matchesPlayed; }
+
+    public Integer getWins() { return wins;}
+
+    public void setWins(Integer wins) { this.wins = wins; }
+
+    public Integer getDraws() {return draws;}
+
+    public void setDraws(Integer draws) {this.draws = draws;}
 }

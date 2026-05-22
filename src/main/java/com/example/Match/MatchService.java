@@ -110,8 +110,22 @@ public class MatchService {
 
         teamA.setTotalScore(teamA.getTotalScore()+match.getTeamAScore());
         teamB.setTotalScore(teamB.getTotalScore()+match.getTeamBScore());
+        teamA.setMatchesPlayed(teamA.getMatchesPlayed()+1);
+        teamB.setMatchesPlayed(teamB.getMatchesPlayed()+1);
+
+        if(match.getTeamAScore()>match.getTeamBScore()){
+            teamA.setWins(teamA.getWins()+1);
+        }
+        else if(match.getTeamAScore()<match.getTeamBScore()){
+            teamA.setWins(teamB.getWins()+1);
+        }
+        else{
+            teamA.setDraws(teamA.getDraws()+1);
+            teamB.setDraws(teamB.getDraws()+1);
+        }
 
         match.setMatchStatus(MatchStatus.COMPLETED);
+
         teamRepository.saveAll(List.of(teamA,teamB));
         matchRepository.save(match);
         return ResponseEntity.ok().body("Match with id: "+matchId+" is now COMPLETED ");
