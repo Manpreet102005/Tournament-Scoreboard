@@ -29,7 +29,7 @@ public class MatchController {
 
     @GetMapping("/{id}")
     public Match getMatchById(@PathVariable Integer id){
-        return matchService.getById(id);
+        return matchService.getMatchById(id);
     }
 
     @DeleteMapping("/{matchId}")
@@ -56,6 +56,13 @@ public class MatchController {
         return matchService.updateTeamScore(matchId,teamId,score);
     }
 
+    @PutMapping("/start/{matchId}")
+    public ResponseEntity<String> startMatch(@PathVariable Integer matchId){
+        return matchService.startMatch(matchId);
+    }
 
-
+    @PutMapping("/end/{matchId}")
+    public ResponseEntity<String> endMatch(@PathVariable Integer matchId){
+        return matchService.endMatch(matchId);
+    }
 }

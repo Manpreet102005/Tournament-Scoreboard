@@ -3,6 +3,7 @@ package com.example.Match;
 import com.example.Team.Team;
 import com.example.Team.TeamRepository;
 import com.example.exceptions.*;
+import jakarta.transaction.Transactional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
@@ -22,7 +23,7 @@ public class MatchService {
         return matchRepository.findAll();
     }
 
-    public Match getById(Integer id) {
+    public Match getMatchById(Integer id) {
         return matchRepository.findById(id).orElseThrow(()->new MatchNotFoundException(id));
     }
 
@@ -47,16 +48,13 @@ public class MatchService {
     }
 
     public ResponseEntity<String> removeMatch(Integer id){
-        if(!matchRepository.existsById(id)){
-            throw new MatchNotFoundException(id);
-        }
+        getMatchById(id);
         matchRepository.deleteById(id);
         return ResponseEntity.ok().body("Removed Successfully");
     }
 
     public ResponseEntity<String> rescheduleMatch(Integer matchId, LocalDateTime newDateTime) {
-        Match match=matchRepository.findById(matchId).orElseThrow(()->
-                new MatchNotFoundException(matchId));
+        Match match=getMatchById(matchId);
 
         if(newDateTime.isBefore(LocalDateTime.now())){
             throw new MatchScheduledInPastException();
@@ -67,10 +65,12 @@ public class MatchService {
     }
 
     public ResponseEntity<String> updateTeamScore(Integer matchId, Integer teamId, Integer score) {
-        Match match=matchRepository.findById(matchId).orElseThrow(()->
-                new MatchNotFoundException(matchId));
-        if(match.getMatchStatus()!=MatchStatus.ONGOING){
-            throw new MatchNotOngoingException();
+        Match match=getMatchById(matchId);
+        if(match.getMatchStatus()!=MatchStatus.SCHEDULED){
+            throw new MatchStatusException("Can not update scores before match has started.");
+        }
+        else if(match.getMatchStatus()!=MatchStatus.COMPLETED){
+            throw new MatchStatusException("Can not update scores after match has completed.");
         }
         if(score<0 || score>100){
             throw new InvalidScoreException();
@@ -87,4 +87,35 @@ public class MatchService {
         matchRepository.save(match);
         return ResponseEntity.ok().body("Team Score Updated Successfully");
     }
+
+    public ResponseEntity<String> startMatch(Integer matchId) {
+        Match match=getMatchById(matchId);
+        if(match.getMatchStatus().equals(MatchStatus.ONGOING)){
+            throw new MatchStatusException("Match Already ONGOING");
+        }
+        if(match.getMatchStatus().equals(MatchStatus.COMPLETED)){
+            throw new MatchStatusException("Can not update scores of COMPLETED match");
+        }
+        match.setMatchStatus(MatchStatus.ONGOING);
+        matchRepository.save(match);
+        return ResponseEntity.ok().body("Match with id: "+matchId+" is now ONGOING.");
+    }
+    @Transactional
+    public ResponseEntity<String> endMatch(Integer matchId) {
+        Match match = getMatchById(matchId);
+        if (!match.getMatchStatus().equals(MatchStatus.ONGOING)) {
+            throw new MatchStatusException("Match must be ONGOING to end it. Current status: " + match.getMatchStatus());
+        }
+        Team teamA=match.getTeamA();
+        Team teamB=match.getTeamB();
+
+        teamA.setTotalScore(teamA.getTotalScore()+match.getTeamAScore());
+        teamB.setTotalScore(teamB.getTotalScore()+match.getTeamBScore());
+
+        match.setMatchStatus(MatchStatus.COMPLETED);
+        teamRepository.saveAll(List.of(teamA,teamB));
+        matchRepository.save(match);
+        return ResponseEntity.ok().body("Match with id: "+matchId+" is now COMPLETED ");
+    }
 }
+
