@@ -35,7 +35,7 @@ public class TeamService {
             throw new MatchTitleAlreadyExists(team.getTeamName());
         }
         teamRepository.save(team);
-        return ResponseEntity.ok().body("Added Successfully");
+        return ResponseEntity.ok().body("Team with id: "+team.getTeamId()+" Added Successfully");
     }
 
     public ResponseEntity<String> removeTeam(Integer id){
@@ -43,7 +43,7 @@ public class TeamService {
             throw new MatchNotFoundException(id);
         }
         teamRepository.deleteById(id);
-        return ResponseEntity.ok().body("Removed Successfully");
+        return ResponseEntity.ok().body("Team with id: "+id+" Removed Successfully");
     }
 
     public ResponseEntity<String> assignPlayerToTeam(Integer teamId, Integer playerId) {
