@@ -1,9 +1,6 @@
 package com.example;
 
-import com.example.Match.exceptions.InvalidScoreException;
-import com.example.Match.exceptions.MatchNotFoundException;
-import com.example.Match.exceptions.MatchScheduledInPastException;
-import com.example.Match.exceptions.MatchTitleAlreadyExists;
+import com.example.Match.exceptions.*;
 import com.example.Player.exceptions.PlayerNameAlreadyExists;
 import com.example.Player.exceptions.PlayerNotFoundException;
 import com.example.Team.exceptions.TeamAlreadyAssignedException;
@@ -72,6 +69,11 @@ public class UniversalHandler {
 
     @ExceptionHandler(TeamAlreadyAssignedException.class)
     public ResponseEntity<String> handle(TeamAlreadyAssignedException e){
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
+    @ExceptionHandler(MatchStatusException.class)
+    public ResponseEntity<String> handle(MatchStatusException e){
         return ResponseEntity.badRequest().body(e.getMessage());
     }
 }
