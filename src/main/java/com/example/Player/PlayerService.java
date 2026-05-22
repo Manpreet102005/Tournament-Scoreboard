@@ -1,14 +1,10 @@
 package com.example.Player;
 
 
-import com.example.Team.TeamRepository;
-import com.example.exceptions.PlayerNameAlreadyExists;
-import com.example.exceptions.PlayerNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 
-import java.util.Collections;
 import java.util.List;
 
 @Service

@@ -1,14 +1,22 @@
 package com.example;
 
-import com.example.exceptions.*;
-import jakarta.validation.Valid;
+import com.example.Match.InvalidScoreException;
+import com.example.Match.MatchNotFoundException;
+import com.example.Match.MatchScheduledInPastException;
+import com.example.Match.MatchTitleAlreadyExists;
+import com.example.Player.PlayerNameAlreadyExists;
+import com.example.Player.PlayerNotFoundException;
+import com.example.Team.TeamAlreadyAssignedException;
+import com.example.Team.TeamNameAlreadyExist;
+import com.example.Team.TeamNotFoundException;
+import com.example.Team.TeamNotPartOfMatchException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
 @ControllerAdvice
-public class UniversalController {
+public class UniversalHandler {
     @ExceptionHandler(PlayerNotFoundException.class)
     public ResponseEntity<String> handle(PlayerNotFoundException e){
         return ResponseEntity.status(404).body(e.getMessage());

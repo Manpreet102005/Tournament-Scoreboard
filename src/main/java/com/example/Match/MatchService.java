@@ -1,8 +1,9 @@
 package com.example.Match;
 
 import com.example.Team.Team;
+import com.example.Team.TeamNotFoundException;
+import com.example.Team.TeamNotPartOfMatchException;
 import com.example.Team.TeamRepository;
-import com.example.exceptions.*;
 import jakarta.transaction.Transactional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;

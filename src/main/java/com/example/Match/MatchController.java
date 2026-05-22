@@ -1,9 +1,6 @@
 package com.example.Match;
 
-import com.example.Team.Team;
-import com.example.exceptions.MatchNotFoundException;
 import jakarta.validation.Valid;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;

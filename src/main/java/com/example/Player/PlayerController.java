@@ -1,10 +1,6 @@
 package com.example.Player;
 
-import com.example.Match.MatchRepository;
-import com.example.Team.Team;
 import com.example.Team.TeamRepository;
-import com.example.exceptions.PlayerNotFoundException;
-import com.example.exceptions.TeamNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
