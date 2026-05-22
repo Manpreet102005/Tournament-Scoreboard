@@ -1,4 +1,4 @@
-package com.example.Team;
+package com.example.Team.exceptions;
 
 public class TeamAlreadyAssignedException extends RuntimeException {
     public TeamAlreadyAssignedException(Integer playerId, Integer teamId) {

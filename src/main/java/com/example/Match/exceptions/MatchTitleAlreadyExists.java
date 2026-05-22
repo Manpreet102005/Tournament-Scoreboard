@@ -1,4 +1,4 @@
-package com.example.Match;
+package com.example.Match.exceptions;
 
 public class MatchTitleAlreadyExists extends RuntimeException {
     public MatchTitleAlreadyExists(String title) {

@@ -1,15 +1,15 @@
 package com.example;
 
-import com.example.Match.InvalidScoreException;
-import com.example.Match.MatchNotFoundException;
-import com.example.Match.MatchScheduledInPastException;
-import com.example.Match.MatchTitleAlreadyExists;
-import com.example.Player.PlayerNameAlreadyExists;
-import com.example.Player.PlayerNotFoundException;
-import com.example.Team.TeamAlreadyAssignedException;
-import com.example.Team.TeamNameAlreadyExist;
-import com.example.Team.TeamNotFoundException;
-import com.example.Team.TeamNotPartOfMatchException;
+import com.example.Match.exceptions.InvalidScoreException;
+import com.example.Match.exceptions.MatchNotFoundException;
+import com.example.Match.exceptions.MatchScheduledInPastException;
+import com.example.Match.exceptions.MatchTitleAlreadyExists;
+import com.example.Player.exceptions.PlayerNameAlreadyExists;
+import com.example.Player.exceptions.PlayerNotFoundException;
+import com.example.Team.exceptions.TeamAlreadyAssignedException;
+import com.example.Team.exceptions.TeamNameAlreadyExist;
+import com.example.Team.exceptions.TeamNotFoundException;
+import com.example.Team.exceptions.TeamNotPartOfMatchException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;

@@ -1,6 +1,8 @@
 package com.example.Player;
 
 
+import com.example.Player.exceptions.PlayerNameAlreadyExists;
+import com.example.Player.exceptions.PlayerNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

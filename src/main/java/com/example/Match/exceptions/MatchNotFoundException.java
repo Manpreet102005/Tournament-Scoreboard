@@ -1,4 +1,4 @@
-package com.example.Match;
+package com.example.Match.exceptions;
 
 public class MatchNotFoundException extends IllegalArgumentException {
     public MatchNotFoundException(Integer id) {

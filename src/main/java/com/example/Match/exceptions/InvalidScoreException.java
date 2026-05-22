@@ -1,4 +1,4 @@
-package com.example.Match;
+package com.example.Match.exceptions;
 
 public class InvalidScoreException extends RuntimeException {
     public InvalidScoreException(){

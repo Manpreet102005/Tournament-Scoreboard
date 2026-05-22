@@ -1,4 +1,4 @@
-package com.example.Team;
+package com.example.Team.exceptions;
 
 public class TeamNameAlreadyExist extends RuntimeException {
     public TeamNameAlreadyExist(String name) {

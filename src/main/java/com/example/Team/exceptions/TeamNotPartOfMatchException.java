@@ -1,4 +1,4 @@
-package com.example.Team;
+package com.example.Team.exceptions;
 
 public class TeamNotPartOfMatchException extends RuntimeException {
     public TeamNotPartOfMatchException(Integer teamId, Integer matchId) {

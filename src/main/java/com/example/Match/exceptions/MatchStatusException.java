@@ -1,4 +1,4 @@
-package com.example.Match;
+package com.example.Match.exceptions;
 
 public class MatchStatusException extends IllegalStateException {
     public MatchStatusException(String message) {

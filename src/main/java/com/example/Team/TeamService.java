@@ -1,10 +1,12 @@
 package com.example.Team;
 
-import com.example.Match.MatchNotFoundException;
-import com.example.Match.MatchTitleAlreadyExists;
+import com.example.Match.exceptions.MatchNotFoundException;
+import com.example.Match.exceptions.MatchTitleAlreadyExists;
 import com.example.Player.Player;
-import com.example.Player.PlayerNotFoundException;
+import com.example.Player.exceptions.PlayerNotFoundException;
 import com.example.Player.PlayerRepository;
+import com.example.Team.exceptions.TeamAlreadyAssignedException;
+import com.example.Team.exceptions.TeamNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.example.Player;
+package com.example.Player.exceptions;
 
 public class PlayerNameAlreadyExists extends RuntimeException {
     public PlayerNameAlreadyExists(String name) {
