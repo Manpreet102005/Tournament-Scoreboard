@@ -13,7 +13,7 @@ public class MatchService {
     private MatchRepository matchRepository;
     private TeamRepository teamRepository;
 
-    public MatchService(MatchRepository matchRepository) {
+    public MatchService(MatchRepository matchRepository,TeamRepository teamRepository) {
         this.teamRepository=teamRepository;
         this.matchRepository = matchRepository;
     }
