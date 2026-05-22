@@ -61,4 +61,9 @@ public class UniversalController {
     public ResponseEntity<String> handle(InvalidScoreException e){
         return ResponseEntity.badRequest().body(e.getMessage());
     }
+
+    @ExceptionHandler(TeamAlreadyAssignedException.class)
+    public ResponseEntity<String> handle(TeamAlreadyAssignedException e){
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
 }

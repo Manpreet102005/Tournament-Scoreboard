@@ -48,7 +48,9 @@ public class TeamService {
                 new TeamNotFoundException(teamId));
         Player player=playerRepository.findById(playerId).orElseThrow(()->
                 new PlayerNotFoundException(playerId));
-
+        if(player.getTeam()!=null){
+            throw new TeamAlreadyAssignedException(playerId,player.getTeam().getTeamId());
+        }
         player.setTeam(team);
         playerRepository.save(player);
         return ResponseEntity.ok().body("Player with id: "+player.getId()+" added to team with id: "+teamId+" successfully.");
