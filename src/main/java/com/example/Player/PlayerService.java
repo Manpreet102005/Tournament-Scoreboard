@@ -3,6 +3,8 @@ package com.example.Player;
 
 import com.example.Player.exceptions.PlayerNameAlreadyExists;
 import com.example.Player.exceptions.PlayerNotFoundException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +23,8 @@ public class PlayerService {
         return playerRepository.findById(id).orElseThrow(()->new PlayerNotFoundException(id));
     }
 
-    public List<Player> getAll() {
-        List<Player> list = playerRepository.findAll();
-        return list;
+    public Page<Player> getAllPlayers(Pageable pageable) {
+        return playerRepository.findAll(pageable);
     }
 
     public ResponseEntity<String> addPlayer(Player player) {

@@ -1,12 +1,13 @@
 package com.example.Match;
 
 import jakarta.validation.Valid;
+
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.data.domain.PageRequest;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @RestController
 @RequestMapping("/match")
@@ -20,8 +21,10 @@ public class MatchController {
     }
 
     @GetMapping
-    public List<MatchDTO> getAllMatches(){
-        return matchService.getAllMatches();
+    public Page<MatchDTO> getAllMatches(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size) {
+        return matchService.getAllMatches(PageRequest.of(page, size));
     }
 
     @GetMapping("/{id}")

@@ -22,11 +22,11 @@ public class Match {
     @NotNull(message="Match date can't be null")
     private LocalDateTime matchDateTime;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="team_a_id")
     private Team teamA;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="team_b_id")
     private Team teamB;
 

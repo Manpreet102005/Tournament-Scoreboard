@@ -6,8 +6,12 @@ import com.example.Team.exceptions.TeamNotFoundException;
 import com.example.Team.exceptions.TeamNotPartOfMatchException;
 import com.example.Team.TeamRepository;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Pageable;
+
+
 import java.time.LocalDateTime;
 import java.util.List;
 @Service
@@ -21,19 +25,8 @@ public class MatchService {
         this.matchRepository = matchRepository;
     }
 
-    public List<MatchDTO> getAllMatches() {
-        return matchRepository.findAll()
-                .stream().map(match->new MatchDTO(
-                        match.getMatchId(),
-                        match.getMatchTitle(),
-                        match.getMatchDateTime(),
-                        match.getTeamAName(),
-                        match.getTeamBName(),
-                        match.getTeamAScore(),
-                        match.getTeamBScore(),
-                        match.getMatchStatus()
-                ))
-                .toList();
+    public Page<MatchDTO> getAllMatches(Pageable pageable) {
+        return matchRepository.findAll(pageable).map(this::toMatchDTO);
     }
 
     public MatchDTO getMatchDTOById(Integer id) {
@@ -162,6 +155,17 @@ public class MatchService {
         matchRepository.save(match);
         return ResponseEntity.ok().body("Match with id: "+matchId+" is now COMPLETED ");
     }
-
+    private MatchDTO toMatchDTO(Match match) {
+        return new MatchDTO(
+                match.getMatchId(),
+                match.getMatchTitle(),
+                match.getMatchDateTime(),
+                match.getTeamAName(),
+                match.getTeamBName(),
+                match.getTeamAScore(),
+                match.getTeamBScore(),
+                match.getMatchStatus()
+        );
+    }
 }
 
