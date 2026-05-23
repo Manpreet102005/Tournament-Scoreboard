@@ -42,6 +42,12 @@ public class TeamService {
         if(!teamRepository.existsById(id)){
             throw new MatchNotFoundException(id);
         }
+        Team team=getTeamById(id);
+        List<Player> players = team.getPlayers();
+        for(Player player : players) {
+            player.setTeam(null);
+            playerRepository.save(player);
+        }
         teamRepository.deleteById(id);
         return ResponseEntity.ok().body("Team with id: "+id+" Removed Successfully");
     }
