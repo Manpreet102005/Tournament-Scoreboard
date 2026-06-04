@@ -34,24 +34,39 @@ A REST API built with Java and Spring Boot to manage tournament data — teams, 
 
 ## Endpoints
 
-**Auth** — public
+### Auth (Public)
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | /auth/register | Register a new user |
+| POST | /auth/login | Login and get access + refresh token |
+| POST | /auth/refresh | Get new access token using refresh token |
 
-- `POST /auth/register`
-- `POST /auth/login`
-- `POST /auth/refresh`
+### Admin Only
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | /admin/player | Add a new player |
+| DELETE | /admin/player/{id} | Delete a player |
+| POST | /admin/team | Add a new team |
+| PUT | /admin/team/{teamId} | Rename a team |
+| DELETE | /admin/team/{teamId} | Remove a team |
+| POST | /admin/team/{teamId}/player/{playerId} | Assign player to team |
+| POST | /admin/match/{teamAId}/{teamBId} | Schedule a match between two teams |
+| DELETE | /admin/match/{matchId} | Remove a scheduled match |
+| PUT | /admin/match/start/{matchId} | Start a match |
+| PUT | /admin/match/end/{matchId} | End a match and update team stats |
+| PUT | /admin/match/{matchId}/{teamId}/{score} | Update team score in ongoing match |
+| PUT | /admin/match/reschedule/{matchId}/{newDateTime} | Reschedule a match |
 
-**Admin only**
-
-- `/admin/player` — add, delete
-- `/admin/team` — add, rename, delete, assign player
-- `/admin/match` — add, delete, start, end, update score, reschedule
-
-**Authenticated users**
-
-- `/user/player` — read players
-- `/user/team` — read teams
-- `/user/match` — read matches
-- `GET /scoreboard` — live standings
+### Authenticated Users
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | /user/player | Get all players (paginated) |
+| GET | /user/player/{id} | Get player by id |
+| GET | /user/team | Get all teams |
+| GET | /user/team/{id} | Get team by id |
+| GET | /user/match | Get all matches (paginated) |
+| GET | /user/match/{id} | Get match by id |
+| GET | /scoreboard | Live standings sorted by total score |
 
 ---
 
