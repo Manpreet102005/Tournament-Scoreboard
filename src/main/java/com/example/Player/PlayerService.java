@@ -19,12 +19,17 @@ public class PlayerService {
         this.playerRepository = playerRepository;
     }
 
-    public Player getById(Integer id) {
+    private Player getById(Integer id) {
         return playerRepository.findById(id).orElseThrow(()->new PlayerNotFoundException(id));
     }
 
-    public Page<Player> getAllPlayers(Pageable pageable) {
-        return playerRepository.findAll(pageable);
+    public PlayerDTO getDTOById(Integer id) {
+        Player player=playerRepository.findById(id).orElseThrow(()->new PlayerNotFoundException(id));
+        return toPlayerDTO(player);
+    }
+
+    public Page<PlayerDTO> getAllPlayers(Pageable pageable) {
+        return playerRepository.findAll(pageable).map(this::toPlayerDTO);
     }
 
     public ResponseEntity<String> addPlayer(Player player) {
@@ -42,5 +47,11 @@ public class PlayerService {
         playerRepository.deleteById(id);
         return ResponseEntity.ok().body("Player with id: "+id+" deleted successfully");
     }
-
+    private PlayerDTO toPlayerDTO(Player player){
+        return new PlayerDTO(
+                player.getId(),
+                player.getName(),
+                player.getTeam().getTeamName()
+        );
+    }
 }

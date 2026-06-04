@@ -15,15 +15,15 @@ public class UserPlayerController {
     }
     //getAll
     @GetMapping()
-    public Page<Player> getAllPlayers(
+    public Page<PlayerDTO> getAllPlayers(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size) {
         return playerService.getAllPlayers(PageRequest.of(page, size));
     }
 
     @GetMapping("/{id}")
-    public Player getById(@PathVariable Integer id){
-        return playerService.getById(id);
+    public PlayerDTO getById(@PathVariable Integer id){
+        return playerService.getDTOById(id);
     }
 
 }
