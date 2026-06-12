@@ -17,8 +17,9 @@ public class JwtConfiguration {
         return request
                 .csrf(csrf->csrf.disable())
                 .authorizeHttpRequests(auth->
-                        auth.
-                                requestMatchers("/auth/**").permitAll()
+                        auth
+                                .requestMatchers("/","/index.html","/css/**","/js/**").permitAll()
+                                .requestMatchers("/auth/**").permitAll()
                                 .requestMatchers("/admin/**").hasAuthority(UserRole.ROLE_ADMIN.name())
                                 .requestMatchers("/user/**").authenticated()
                                 .anyRequest().authenticated()
