@@ -60,7 +60,7 @@ button{
     background-color: #1d57a1;
     color: white;
 }
-#submit-button{
+.buttons{
     background-color: #1d57a1;
     color: white;
 }
@@ -92,7 +92,7 @@ button{
     justify-content: center;
 }
 
-/* PAGE 2: Home Pgae: Scoreboard*/
+/* PAGE 2/3*/
 
 #nav-bar{
     width: 100%;
@@ -117,6 +117,7 @@ a{
 }
 table{
     width: 100%;
+    height: 385px;
     border-collapse: collapse;  
 }
 
@@ -132,9 +133,21 @@ thead th{
     width: 100%;
     max-height: 500px;
     overflow-y: auto;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+    align-items: center;
 }
 td {
     padding: 12px;
     text-align: center;
     border-bottom: 1px solid #ddd;
+}
+
+/*Pagination Styling*/
+
+.pagination-nav-div{
+    width: 25%;
+    display: flex;
+    justify-content: space-evenly;
 }

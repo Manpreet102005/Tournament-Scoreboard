@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matches</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div id="nav-bar">
+            <div id="scoreboard" class="nav-bar-tabs ">
+                <a href="">Scoreboard</a>
+            </div>
+            <div id="matches" class="nav-bar-tabs active ">
+                <a href="">Matches</a>
+            </div>
+            <div id="teams" class="nav-bar-tabs ">
+                <a href="">Teams</a>
+            </div>
+            <div id="players" class="nav-bar-tabs ">
+                <a href="">Players</a>
+            </div>
+        </div>
+    </header>
+    <main>
+       <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Match Id</th>
+                        <th>Match Title</th>
+                        <th>Match Date Time</th>
+                        <th>Team A Name </th>
+                        <th>Team B Name</th>
+                        <th>Team A Score</th>
+                        <th>Team B Score</th>
+                        <th>Match Status</th>
+                    </tr>
+                </thead>
+                <tbody id="matches-table-body"></tbody>
+            </table>
+            <div class="pagination-nav-div">
+                <button id="prev" class="buttons">Prev</button>
+                <button id="next" class="buttons">Next</button>
+            </div>
+       </div>
+    </main>
+</body>
+</html>
