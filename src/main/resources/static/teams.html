@@ -10,20 +10,24 @@
     <header>
         <div id="nav-bar">
             <div id="scoreboard" class="nav-bar-tabs ">
-                <a href="">Scoreboard</a>
+                <a href="scoreboard.html">Scoreboard</a>
             </div>
             <div id="matches" class="nav-bar-tabs  ">
-                <a href="">Matches</a>
+                <a href="matches.html">Matches</a>
             </div>
             <div id="teams" class="nav-bar-tabs active ">
-                <a href="">Teams</a>
+                <a href="teams.html">Teams</a>
             </div>
             <div id="players" class="nav-bar-tabs ">
-                <a href="">Players</a>
+                <a href="players.html">Players</a>
             </div>
         </div>
     </header>
     <main>
+        <div class="add-div admin-only">
+            <button id="add-team" class="buttons add-buttons">Add Team</button>
+        </div>
+        <br>
        <div class="table-container">
          <table>
             <thead>
@@ -34,6 +38,7 @@
                     <th>Matches Played</th>
                     <th>Wins</th>
                     <th>Draws</th>
+                    <th class="admin-only">Actions</th>
                 </tr>
             </thead>
             <tbody id="scoreboard-table-body"></tbody>

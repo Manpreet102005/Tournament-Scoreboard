@@ -10,20 +10,24 @@
    <header>
         <div id="nav-bar">
             <div id="scoreboard" class="nav-bar-tabs ">
-                <a href="/scoreboard.html">Scoreboard</a>
+                <a href="scoreboard.html">Scoreboard</a>
             </div>
             <div id="matches" class="nav-bar-tabs">
-                <a href="/matches.html">Matches</a>
+                <a href="matches.html">Matches</a>
             </div>
             <div id="teams" class="nav-bar-tabs ">
-                <a href="/teams.html">Teams</a>
+                <a href="teams.html">Teams</a>
             </div>
             <div id="players" class="nav-bar-tabs active">
-                <a href="/players.html">Players</a>
+                <a href="players.html">Players</a>
             </div>
         </div>
     </header>
     <main>
+        <div class="add-div admin-only">
+            <button id="add-player" class="buttons add-buttons">Add Player</button>
+        </div>
+        <br>
        <div class="table-container">
             <table>
                 <thead>
@@ -31,15 +35,16 @@
                         <th>Player Id</th>
                         <th>Player Name</th>
                         <th>Team Name</th>
+                        <th class="admin-only">Actions</th>
                     </tr>
                 </thead>
                 <tbody id="matches-table-body"></tbody>
             </table>
-            <div class="pagination-nav-div">
-                <button id="prev" class="buttons">Prev</button>
-                <button id="next" class="buttons">Next</button>
-            </div>
        </div>
+       <div class="pagination-nav-div">
+                <button id="prev" class="buttons pagination-buttons">Prev</button>
+                <button id="next" class="buttons pagination-buttons">Next</button>
+        </div>
     </main> 
 </body>
 </html>

@@ -11,7 +11,7 @@ body {
 }
 
 header {
-    height: 100px;
+    height: 70px;
     background-color: #0d2c54;
     color: white;
     padding: 16px 24px;
@@ -25,8 +25,7 @@ main {
     margin: 40px auto;
     padding: 0 24px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
 }
 #login-form{
     width:35%;
@@ -35,7 +34,6 @@ main {
     display: flex;
     flex-direction: column;
     justify-content:space-around;
-
 }
 #mode{
     margin:20px;
@@ -117,8 +115,9 @@ a{
 }
 table{
     width: 100%;
-    height: 385px;
-    border-collapse: collapse;  
+    height: 357px;
+    border-collapse: separate;  
+    border-spacing: 0;
 }
 
 thead th{
@@ -131,12 +130,11 @@ thead th{
 }
 .table-container {
     width: 100%;
-    max-height: 500px;
+    max-height: 349px;
     overflow-y: auto;
     display: flex;
     flex-direction:column;
-    justify-content: space-between;
-    align-items: center;
+    align-items: end;
 }
 td {
     padding: 12px;
@@ -147,7 +145,17 @@ td {
 /*Pagination Styling*/
 
 .pagination-nav-div{
-    width: 25%;
+    width: 100%;
+    height: 50px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: end;
+    align-items: center;
 }
+.pagination-buttons{
+    margin:20px;
+}
+
+/* admin only features by default hidden*/
+/*.admin-only{
+    display:none;
+}*/
