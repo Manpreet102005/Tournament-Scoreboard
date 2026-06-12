@@ -52,7 +52,7 @@ button{
     border-radius: 14px;
     background-color: white;
 }
-.active{
+#mode .active{
     background-color: #1d57a1;
     color: white;
 }
@@ -92,3 +92,42 @@ button{
     justify-content: center;
 }
 
+/* PAGE 2: Home Pgae: Scoreboard*/
+
+#nav-bar{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+a{
+    color: white;
+    text-decoration: none;
+}
+.nav-bar-tabs{
+    width: 100px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: large;   
+}
+#nav-bar .active {
+    width:120px;
+    border-bottom:3px solid #1d57a1;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;  
+}
+
+th{
+    border: 1px solid black;
+    padding: 10px;
+    text-align: center;
+    color: black;
+}
+.table-container {
+    width: 100%;
+    max-height: 500px;
+    overflow-y: auto;
+}
