@@ -24,10 +24,27 @@
         </div>
     </header>
     <main>
-        <div class="add-div admin-only">
-            <button id="add-player" class="buttons add-buttons">Add Player</button>
+        <div class="admin-div admin-only">
+            <button id="add-player" class="buttons admin-buttons">Add Player</button>
+            <button id="delete-player" class="buttons admin-buttons">Delete Player</button>
         </div>
         <br>
+        <div id="add-player-modal" class="modal">
+            <div class="modal-content">
+                <h3>Add Player</h3>
+                <input type="text" placeholder="Player Name">
+                <button class="buttons" id="add-player-pk">Add</button>
+                <button class="buttons" id="add-player-cancel">Cancel</button>
+            </div>
+        </div>
+        <div id="delete-player-modal" class="modal">
+            <div class="modal-content">
+                <h3>Delete Player</h3>
+                <input type="number" placeholder="Player Id">
+                <button class="buttons" id="delete-player-ok">Delete</button>
+                <button class="buttons" id="delete-player-cancel">Cancel</button>
+            </div>
+        </div>
        <div class="table-container">
             <table>
                 <thead>
@@ -35,7 +52,6 @@
                         <th>Player Id</th>
                         <th>Player Name</th>
                         <th>Team Name</th>
-                        <th class="admin-only">Actions</th>
                     </tr>
                 </thead>
                 <tbody id="matches-table-body"></tbody>

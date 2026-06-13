@@ -25,9 +25,46 @@
     </header>
     <main>
         <div class="add-div admin-only">
-            <button id="add-team" class="buttons add-buttons">Add Team</button>
+            <button id="add-team" class="buttons admin-buttons">Add Team</button>
+            <button id="remove-team" class="buttons admin-buttons">Remove Team</button>
+            <button id="rename-team" class="buttons admin-buttons">Rename Team</button>
+            <button id="assign-player-to-team" class="buttons admin-buttons">Assign Player</button>
         </div>
         <br>
+        <div id="add-team-modal" class="modal">
+            <div class="modal-content">
+                <h3>Add Team</h3>
+                <input type="text" placeholder="Team Name">
+                <button class="buttons" id="add-team-ok">Add</button>
+                <button class="buttons" id="add-team-cancel">Cancel</button>
+            </div>
+        </div>
+        <div id="remove-team-modal" class="modal">
+            <div class="modal-content">
+                <h3>Remove Team</h3>
+                <input type="number" placeholder="Team Id">
+                <button class="buttons" id="remove-team-ok">Remove</button>
+                <button class="buttons" id="remove-team-cancel">Cancel</button>
+            </div>
+        </div>
+        <div id="rename-team-modal" class="modal">
+            <div class="modal-content">
+                <h3>Rename Team</h3>
+                <input type="number" placeholder="Team Id">
+                <input type="text" placeholder="New Team Name">
+                <button class="buttons" id="rename-team-ok">Rename</button>
+                <button class="buttons" id="rename-team-cancel">Cancel</button>
+            </div>
+        </div>
+        <div id="assign-player-to-team-modal" class="modal">
+            <div class="modal-content">
+                <h3>Assign Player</h3>
+                <input type="number" placeholder="Team Id">
+                <input type="number" placeholder="Player Id">
+                <button class="buttons" id="rename-team-ok">Rename</button>
+                <button class="buttons" id="rename-team-cancel">Cancel</button>
+            </div>
+        </div>
        <div class="table-container">
          <table>
             <thead>
@@ -38,7 +75,6 @@
                     <th>Matches Played</th>
                     <th>Wins</th>
                     <th>Draws</th>
-                    <th class="admin-only">Actions</th>
                 </tr>
             </thead>
             <tbody id="scoreboard-table-body"></tbody>
