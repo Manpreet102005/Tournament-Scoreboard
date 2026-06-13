@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Match Console</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <div id="nav-bar">
+            
+        </div>
+    </header>
+    <main>
+        <h3 class="match-status-heading">Ongoing Matches</h3>
+        <br>
+        <div class="container ongoing--container">
+            <div class="match-card">
+                <div class="match-info">
+                    <div class="match-title">Match Title</div>
+                    <div class="match-teams">Team A vs Team B</div>
+                    <div class="match-date-time">10 July 2026</div>
+                </div>
+                <div class="match-scores">0 - 0</div>
+                <div class="match-card-actions">
+                    <button class="buttons admin-buttons ">Update Score</button>
+                    <button class="buttons admin-buttons ">End Match</button>
+                </div>
+            </div>
+        </div>
+        <div id="update-team-scores" class="modal pop-modal">
+            <div class="modal-content">
+                <h3>Update Score</h3>
+                <div class="label">Team A Score</div>
+                <input type="number" id="team-A-score">
+                <div class="label">Team B Score</div>
+                <input type="number" id="team-B-score">
+                <button class="buttons" id="update-score-ok">Update</button>
+                <button class="buttons" id="upadte-score-cancel">Cancel</button>
+            </div>
+        </div>
+        <div id="end-match" class="modal pop-modal">
+            <div class="modal-content">
+                <h3>End Match</h3>
+                <button class="buttons" id="end-match-ok">End</button>
+                <button class="buttons" id="end-match-cancel">Cancel</button>
+            </div>
+        </div>
+        <br>
+        <h3 class="match-status-heading">Scheduled Matches</h3>
+        <br>
+        <div class="container scheduled-container">
+            <div class="match-card">
+                <div class="match-info">
+                    <div class="match-title">Match Title</div>
+                    <div class="match-teams">Team A vs Team B</div>
+                    <div class="match-date-time">10 July 2026</div>
+                </div>
+                <div class="match-scores">-</div>
+                <div class="match-card-actions">
+                    <button class="buttons admin-buttons ">Start Match</button>
+                    <button class="buttons admin-buttons ">Reschedule</button>
+                    <button class="buttons admin-buttons ">Delete Match</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="start-match" class="modal pop-modal">
+            <div class="modal-content">
+                <h3>Start Match</h3>
+                <button class="buttons" id="start-match-ok">Start</button>
+                <button class="buttons" id="start-match-cancel">Cancel</button>
+            </div>
+        </div>
+         <div id="reschedule-match" class="modal pop-modal">
+            <div class="modal-content">
+                <h3>Reschedule Match</h3>
+                <div class="label">New Date Time</div>
+                <input type="datetime-local" id="new-date-time">
+                <button class="buttons" id="reschedule-match-ok">Reschedule</button>
+                <button class="buttons" id="reschedule-match-cancel">Cancel</button>
+            </div>
+        </div>
+        <div id="delete-match" class="modal pop-modal">
+            <div class="modal-content">
+                <h3>Delete Match</h3>
+                <div class="label">New Date Time</div>
+                <input type="datetime-local" id="new-date-time">
+                <button class="buttons" id="delete-match-ok">Reschedule</button>
+                <button class="buttons" id="delete-match-cancel">Cancel</button>
+            </div>
+        </div>
+
+        <br>
+        <h3 class="match-status-heading">Completed Matches</h3>
+        <br>
+        <div class="container completed-container">
+            <div class="match-card">
+                <div class="match-info">
+                    <div class="match-title">Match Title</div>
+                    <div class="match-teams">Team A vs Team B</div>
+                    <div class="match-date-time">10 July 2026</div>
+                </div>
+                <div class="match-scores">-</div>
+                <div class="match-card-actions">
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
