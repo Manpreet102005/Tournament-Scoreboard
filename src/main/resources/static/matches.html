@@ -29,6 +29,15 @@
             <button id="match-console" class="buttons admin-buttons ">Match Console</button>
         </div>
         <br>
+        <div id="add-match-modal" class="modal pop-modal">
+            <div class="modal-content">
+                <h3>Add Match</h3>
+                <input type="text" placeholder="Match Title">
+                <input type="datetime-local" placeholder="Match Date-Time (YYYY-MM-DDTHH:mm)">
+                <button class="buttons" id="add-match-ok">Add</button>
+                <button class="buttons " id="add-match-cancel">Cancel</button>
+            </div>
+        </div>
         <div class="table-container">
             <table>
                 <thead>
@@ -51,6 +60,7 @@
                 <button id="next" class="buttons pagination-buttons">Next</button>
         </div>
     </main>
+    <script src="js/matches.js"></script>
     <script src="js/auth.js"></script>
 </body>
 </html>

@@ -35,3 +35,24 @@ async function init() {
 }   
 
 init();
+
+const addPlayerBtn=document.querySelector("#add-player");
+const deletePlayerBtn=document.querySelector("#delete-player");
+const addModal=document.querySelector("#add-player-modal");
+const deleteModal=document.querySelector("#delete-player-modal");
+addPlayerBtn.addEventListener("click",()=>{
+    addModal.style.display="flex";
+    deleteModal.style.display="none";
+})
+
+deletePlayerBtn.addEventListener("click",()=>{
+    deleteModal.style.display="flex";
+    addModal.style.display="none";
+})
+
+
+document.querySelectorAll(".modal-cancel").forEach((btn) => {
+    btn.addEventListener("click", () => {
+        btn.closest(".modal").style.display = "none";
+    });
+});
