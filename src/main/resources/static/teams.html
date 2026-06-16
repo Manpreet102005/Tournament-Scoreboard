@@ -34,7 +34,7 @@
         <div id="add-team-modal" class="modal pop-modal">
             <div class="modal-content">
                 <h3>Add Team</h3>
-                <input type="text" placeholder="Team Name">
+                <input id="team-name" type="text" placeholder="Team Name">
                 <button class="buttons" id="add-team-ok">Add</button>
                 <button class="buttons modal-cancel" id="add-team-cancel">Cancel</button>
             </div>
@@ -42,7 +42,7 @@
         <div id="remove-team-modal" class="modal slide-modal">
             <div class="modal-content">
                 <h3>Remove Team</h3>
-                <input type="number" placeholder="Team Id">
+                <input id="remove-team-id" type="number" placeholder="Team Id">
                 <button class="buttons" id="remove-team-ok">Remove</button>
                 <button class="buttons modal-cancel" id="remove-team-cancel">Cancel</button>
             </div>
@@ -50,8 +50,8 @@
         <div id="rename-team-modal" class="modal slide-modal">
             <div class="modal-content">
                 <h3>Rename Team</h3>
-                <input type="number" placeholder="Team Id">
-                <input type="text" placeholder="New Team Name">
+                <input id="rename-team-id" type="number" placeholder="Team Id">
+                <input id="new-team-name" type="text" placeholder="New Team Name">
                 <button class="buttons" id="rename-team-ok">Rename</button>
                 <button class="buttons modal-cancel" id="rename-team-cancel">Cancel</button>
             </div>
@@ -59,10 +59,10 @@
         <div id="assign-player-to-team-modal" class="modal slide-modal">
             <div class="modal-content">
                 <h3>Assign Player</h3>
-                <input type="number" placeholder="Team Id">
-                <input type="number" placeholder="Player Id">
-                <button class="buttons" id="rename-team-ok">Rename</button>
-                <button class="buttons modal-cancel" id="rename-team-cancel">Cancel</button>
+                <input id="assign-team-id" type="number" placeholder="Team Id">
+                <input id="assign-player-id" type="number" placeholder="Player Id">
+                <button class="buttons" id="assign-player-ok">Assign</button>
+                <button class="buttons modal-cancel" id="assign-player-cancel">Cancel</button>
             </div>
         </div>
        <div class="table-container">

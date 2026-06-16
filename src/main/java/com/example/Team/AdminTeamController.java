@@ -35,7 +35,7 @@ public class AdminTeamController {
         return teamService.addTeam(team);
     }
 
-    @PostMapping("/{teamId}/player/{playerId}")
+    @PutMapping("/{teamId}/player/{playerId}")
     public ResponseEntity<String> assignPlayerToTeam(@PathVariable Integer teamId,
         @PathVariable Integer playerId){
 
@@ -47,8 +47,8 @@ public class AdminTeamController {
         return teamService.removeTeam(teamId);
     }
 
-    @PutMapping("{teamId}")
-    public ResponseEntity<String> renameTeam(@PathVariable Integer teamId,String newTeamName){
+    @PutMapping("{teamId}/{newTeamName}")
+    public ResponseEntity<String> renameTeam(@PathVariable Integer teamId,@PathVariable String newTeamName){
         return teamService.renameTeam(teamId,newTeamName);
     }
 }

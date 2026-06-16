@@ -6,12 +6,12 @@ function generateTeamRows(teams){
     let html="";
     teams.forEach(team => {
         html+=`<tr>
-                    <th>${team.teamId}</th>
-                    <th>${team.teamName} </th>
-                    <th>${team.totalScore} </th>
-                    <th>${team.matchesPlayed} </th>
-                    <th>${team.wins} </th>
-                    <th>${team.draws} </th>
+                    <td>${team.teamId}</td>
+                    <td>${team.teamName} </td>
+                    <td>${team.totalScore} </td>
+                    <td>${team.matchesPlayed} </td>
+                    <td>${team.wins} </td>
+                    <td>${team.draws} </td>
                 </tr>`;
     });
 
@@ -63,5 +63,90 @@ document.querySelectorAll(".modal-cancel").forEach((btn) => {
     btn.addEventListener("click", () => {
         btn.closest(".modal").style.display = "none";
     });
+});
+
+
+const confirmAddTeamBtn= document.querySelector("#add-team-ok");
+confirmAddTeamBtn.addEventListener("click",async ()=>{    
+    const teamName=document.querySelector("#team-name").value; 
+    const response= await fetch("http://localhost:8081/admin/team",{
+        method:"POST",
+        headers:{
+            "content-type":"application/json",
+            "authorization":`Bearer ${localStorage.getItem("accessToken")}`
+        },
+        body:JSON.stringify(teamName)
+    });
+    const data=await response.text();
+    console.log(data);
+    if(response.ok){
+        document.querySelector("#add-team-modal").style.display="none";
+        init();
+    }
+    else{
+        alert(data);
+    }
+});
+
+
+const confirmRenameTeamBtn=document.querySelector("#rename-team-ok");
+confirmRenameTeamBtn.addEventListener("click",async ()=>{
+    const teamId=document.querySelector("#rename-team-id");
+    const newTeamName=document.querySelector("#new-team-name");
+    const response=await fetch(`http://localhost:8081/admin/team/${teamId.value}/${newTeamName.value}`,{
+        method:"PUT",
+        headers:{"authorization":`Bearer ${localStorage.getItem("accessToken")}`}
+    });
+    const data=await response.text();
+    if(response.ok){
+        teamId.value="";
+        newTeamName.value="";
+        document.querySelector("#rename-team-modal").style.display="none";
+        init();
+    }
+    else{
+        alert(data);
+    }
+    console.log(data);
+});
+
+const confirmRemoveTeamBtn=document.querySelector("#remove-team-ok");
+confirmRemoveTeamBtn.addEventListener("click",async ()=>{
+    const teamId=document.querySelector("#remove-team-id").value;
+    const response=await fetch(`http://localhost:8081/admin/team/${teamId}`,{
+        method:"DELETE",
+        headers:{"authorization":`Bearer ${localStorage.getItem("accessToken")}`}
+    });
+    const data=await response.text();
+    if(response.ok){
+        document.querySelector("#remove-team-modal").style.display="none";
+        init();
+    }
+    else{
+        alert(data);
+    }
+    console.log(data);
+});
+
+const confirmAssignPlayerBtn=document.querySelector("#assign-player-ok");
+confirmAssignPlayerBtn.addEventListener("click",async ()=>{
+    const teamId=document.querySelector("#assign-team-id");
+    const playerId=document.querySelector("#assign-player-id");
+
+    const response=await fetch(`http://localhost:8081/admin/team/${teamId.value}/player/${playerId.value}`,{
+        method:"PUT",
+        headers:{"authorization":`Bearer ${localStorage.getItem("accessToken")}`}
+    });
+    const data=await response.text();
+    if(response.ok){
+        teamId.value="";
+        playerId.value="";
+        document.querySelector("#assign-player-to-team-modal").style.display="none";
+        init();
+    }
+    else{
+        alert(data);
+    }
+    console.log(data);
 });
 

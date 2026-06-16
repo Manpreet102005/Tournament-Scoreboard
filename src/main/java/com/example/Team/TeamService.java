@@ -1,18 +1,19 @@
 package com.example.Team;
 
-import com.example.Player.Player;
-import com.example.Player.PlayerDTO;
-import com.example.Player.PlayerService;
-import com.example.Player.exceptions.PlayerNotFoundException;
-import com.example.Player.PlayerRepository;
-import com.example.Team.exceptions.TeamAlreadyAssignedException;
-import com.example.Team.exceptions.TeamNameAlreadyExist;
-import com.example.Team.exceptions.TeamNotFoundException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.example.Player.Player;
+import com.example.Player.PlayerDTO;
+import com.example.Player.PlayerRepository;
+import com.example.Player.PlayerService;
+import com.example.Player.exceptions.PlayerNotFoundException;
+import com.example.Team.exceptions.TeamAlreadyAssignedException;
+import com.example.Team.exceptions.TeamNameAlreadyExist;
+import com.example.Team.exceptions.TeamNotFoundException;
 @Service
 public class TeamService {
 
@@ -73,6 +74,9 @@ public class TeamService {
         Team team=teamRepository.findById(teamId).orElseThrow(()->
                 new TeamNotFoundException(teamId));
         String oldName=team.getTeamName();
+        if(oldName.equals(newTeamName)){
+            throw new TeamNameAlreadyExist(oldName);
+        }
         team.setTeamName(newTeamName);
         teamRepository.save(team);
         return ResponseEntity.ok().body("Team with id: "+teamId+" renamed from "+oldName+" to "+newTeamName+" successfully.");
