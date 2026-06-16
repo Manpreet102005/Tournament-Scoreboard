@@ -1,18 +1,4 @@
-async function showScoreBoard() {
-    const response= await fetch("http://localhost:8081/scoreboard",{
-        method:"GET",
-        headers:{
-            "authorization":`Bearer ${localStorage.getItem("accessToken")}`
-        }
-    });
-
-    if(!response.ok){
-        console.log(response.status);
-        return;
-    }
-    const data=await response.json();
-    return data;
-}
+const url="http://localhost:8081/scoreboard";
 
 function generateScoreboardRows(scoreboardDetails){
     
@@ -20,20 +6,20 @@ function generateScoreboardRows(scoreboardDetails){
     let html="";
     scoreboardDetails.forEach(teamDTO => {
         html+=`<tr>
-                    <th>${teamDTO.rank}</th>
-                    <th>${teamDTO.teamId} </th>
-                    <th>${teamDTO.teamName} </th>
-                    <th>${teamDTO.totalScore} </th>
-                    <th>${teamDTO.matchesPlayed} </th>
-                    <th>${teamDTO.wins} </th>
-                    <th>${teamDTO.winRatio} </th>
+                    <td>${teamDTO.rank}</td>
+                    <td>${teamDTO.teamId} </td>
+                    <td>${teamDTO.teamName} </td>
+                    <td>${teamDTO.totalScore} </td>
+                    <td>${teamDTO.matchesPlayed} </td>
+                    <td>${teamDTO.wins} </td>
+                    <td>${teamDTO.winRatio} </td>
                 </tr>`;
     });
 
     scoreboardTableBody.innerHTML=html;
 }
 async function init() { 
-    const scoreboardDetails = await showScoreBoard();
+    const scoreboardDetails = await fetchData(url);
     generateScoreboardRows(scoreboardDetails);
 }   
 

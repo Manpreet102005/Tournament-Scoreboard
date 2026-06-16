@@ -1,18 +1,8 @@
-async function showMatches() {
-    const response= await fetch("http://localhost:8081/user/match",{
-        method:"GET",
-        headers:{
-            "authorization":`Bearer ${localStorage.getItem("accessToken")}`
-        }
-    });
+const url="http://localhost:8081/user/match";
+let page=0;
 
-    if(!response.ok){
-        console.log(response.status);
-        return;
-    }
-    const data=await response.json();
-    return data;
-}
+const nextBtn=document.querySelector("#next");
+const prevBtn=document.querySelector("#prev");
 
 function generateMatchRows(matches){
     
@@ -34,8 +24,9 @@ function generateMatchRows(matches){
     matchesTableBody.innerHTML=html;
 }
 async function init() { 
-    const matches = await showMatches();
-    generateMatchRows(matches);
+    const matches = await fetchData(url,true,page);
+    generateMatchRows(matches.content);
+    handlePagination(matches,page,nextBtn,prevBtn);
 }   
 
 init();

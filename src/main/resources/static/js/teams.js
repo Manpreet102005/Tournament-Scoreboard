@@ -1,18 +1,4 @@
-async function showTeams() {
-    const response= await fetch("http://localhost:8081/user/team",{
-        method:"GET",
-        headers:{
-            "authorization":`Bearer ${localStorage.getItem("accessToken")}`
-        }
-    });
-
-    if(!response.ok){
-        console.log(response.status);
-        return;
-    }
-    const data=await response.json();
-    return data;
-}
+const url="http://localhost:8081/user/team";
 
 function generateTeamRows(teams){
     
@@ -32,7 +18,7 @@ function generateTeamRows(teams){
     teamsTableBody.innerHTML=html;
 }
 async function init() { 
-    const teams = await showTeams();
+    const teams = await fetchData(url,false);
     generateTeamRows(teams);
 }   
 
@@ -78,3 +64,4 @@ document.querySelectorAll(".modal-cancel").forEach((btn) => {
         btn.closest(".modal").style.display = "none";
     });
 });
+
