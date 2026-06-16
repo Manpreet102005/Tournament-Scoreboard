@@ -1,22 +1,8 @@
 const url="http://localhost:8081/user/player";
+let page=0;
 
-async function fetchData(url,paginated=false,page=0,size=10) {
-    const fullUrl=paginated?`${url}?page=${page}&size=${size}`:url;
-    const response= await fetch(fullUrl,{
-        method:"GET",
-        headers:{
-            "authorization":`Bearer ${localStorage.getItem("accessToken")}`
-        }
-    });
-
-    if(!response.ok){
-        console.log(response.status);
-        return [];
-    }
-    const data=await response.json();
-    console.log(data);
-    return paginated?data.content:data;
-}
+const nextBtn=document.querySelector("#next");
+const prevBtn=document.querySelector("#prev");
 
 function generatePlayerRows(players){
     
@@ -33,29 +19,24 @@ function generatePlayerRows(players){
     playerTableBody.innerHTML=html;
 }
 
-let page=0;
-
 async function init() { 
     const players = await fetchData(url,true,page);
-    generatePlayerRows(players);
+    generatePlayerRows(players.content);  
+    handlePagination(players,page,nextBtn,prevBtn);
 }   
 
 init();
 
-const nextBtn=document.querySelector("#next");
+
 nextBtn.addEventListener("click",async ()=>{
     page++;
-    const players=await fetchData(url,true,page);
-    generatePlayerRows(players);
+    init()
 });
 
-const prevBtn=document.querySelector("#prev");
 prevBtn.addEventListener("click",async ()=>{
     if(page>0) page--;
-    const players=await fetchData(url,true,page);
-    generatePlayerRows(players);
+    init()
 });
-
 
 const addPlayerBtn=document.querySelector("#add-player");
 const deletePlayerBtn=document.querySelector("#delete-player");

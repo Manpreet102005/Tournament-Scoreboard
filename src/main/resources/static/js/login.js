@@ -13,6 +13,7 @@ login.addEventListener("click",()=>{
 const username=document.querySelector("#username");
 const password=document.querySelector("#password");
 const submit=document.querySelector("#submit-button");
+const message = document.querySelector("#message");
 
 submit.addEventListener("click",async ()=>{
     let mode="";
@@ -22,7 +23,8 @@ submit.addEventListener("click",async ()=>{
     if(login.classList.contains("active")){
         mode="login"
     }
-    const response=await fetch(`http://localhost:8081/auth/${mode}`,{
+    try{
+        const response=await fetch(`http://localhost:8081/auth/${mode}`,{
             method:"POST",
             headers:{"content-type":"application/json"},
             body:JSON.stringify({username:username.value,password:password.value})
@@ -52,4 +54,7 @@ submit.addEventListener("click",async ()=>{
         register.classList.remove("active");
         password.value="";
     }
-})
+    }catch(e){
+        message.textContent="Server not reachable. Try again later.";
+    }
+});
