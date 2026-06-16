@@ -32,13 +32,15 @@
         <div id="add-match-modal" class="modal pop-modal">
             <div class="modal-content">
                 <h3>Add Match</h3>
-                <input type="text" placeholder="Match Title">
-                <input type="datetime-local" placeholder="Match Date-Time (YYYY-MM-DDTHH:mm)">
+                <input id="match-title" type="text" placeholder="Match Title">
+                <input id="match-date-time" type="datetime-local" placeholder="Match Date-Time (YYYY-MM-DDTHH:mm)">
+                <input id="team-A-id" type="number" placeholder="Team A Id">
+                <input id="team-B-id" type="number" placeholder="Team B Id">
                 <button class="buttons" id="add-match-ok">Add</button>
                 <button class="buttons " id="add-match-cancel">Cancel</button>
             </div>
         </div>
-        <div class="table-container">
+        <div class="table-container paginated-container">
             <table>
                 <thead>
                     <tr>

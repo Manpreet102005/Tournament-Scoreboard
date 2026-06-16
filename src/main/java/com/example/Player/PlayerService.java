@@ -47,7 +47,7 @@ public class PlayerService {
         return new PlayerDTO(
                 player.getPlayerId(),
                 player.getPlayerName(),
-                player.getTeam().getTeamName()
+                player.getTeam()!=null?player.getTeam().getTeamName():"N/A"
         );
     }
 }

@@ -8,6 +8,7 @@
     font-family: Arial, sans-serif;
     font-size: 16px;
     background-color: #f4f4f4;
+        overflow:hidden;
 }
 
 header {
@@ -123,17 +124,18 @@ table{
     border-spacing: 0;
 }
 
-thead th{
+thead tr th{
     position: sticky;
     top: 0;
     border: 1px solid black;
     padding: 10px;
     text-align: center;
     color: black;
+    background-color:#f4f4f4;
 }
 .table-container {
     width: 100%;
-    max-height: 349px;
+    max-height: 340px;
     overflow-y: auto;
 }
 .scoreboard{

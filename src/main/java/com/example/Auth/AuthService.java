@@ -33,7 +33,7 @@ public class AuthService {
     public ResponseEntity<Map<String, String>> login(User user) {
         UserDetails userDetails=userService.loadUserByUsername(user.getUsername());
         if(passwordEncoder.matches(user.getPassword(),userDetails.getPassword())){
-            String accessToken=jwtUtil.generateAccessToken(user.getUsername());
+            String accessToken=jwtUtil.generateAccessToken(user.getUsername(),userDetails);
             String refreshToken=jwtUtil.generateRefreshToken(user.getUsername());
             return ResponseEntity.ok().body(
                     Map.of(
@@ -51,7 +51,7 @@ public class AuthService {
         String username=jwtUtil.getUsername(refreshToken);
         UserDetails userDetails=userService.loadUserByUsername(username);
         if(jwtUtil.isTokenValid(refreshToken,userDetails)){
-            String newAccessToken=jwtUtil.generateAccessToken(username);
+            String newAccessToken=jwtUtil.generateAccessToken(username,userDetails);
             return ResponseEntity.ok().body(
                     Map.of("accessToken",newAccessToken)
             );

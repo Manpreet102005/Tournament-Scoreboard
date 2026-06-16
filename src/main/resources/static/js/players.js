@@ -1,5 +1,8 @@
-async function getPlayers() {
-    const response= await fetch("http://localhost:8081/user/player",{
+const url="http://localhost:8081/user/player";
+
+async function fetchData(url,paginated=false,page=0,size=10) {
+    const fullUrl=paginated?`${url}?page=${page}&size=${size}`:url;
+    const response= await fetch(fullUrl,{
         method:"GET",
         headers:{
             "authorization":`Bearer ${localStorage.getItem("accessToken")}`
@@ -8,11 +11,11 @@ async function getPlayers() {
 
     if(!response.ok){
         console.log(response.status);
-        return;
+        return [];
     }
     const data=await response.json();
     console.log(data);
-    return data.content;
+    return paginated?data.content:data;
 }
 
 function generatePlayerRows(players){
@@ -21,20 +24,38 @@ function generatePlayerRows(players){
     let html="";
     players.forEach((player) => {
         html+=`<tr>
-                    <th>${player.playerId}</th>
-                    <th>${player.playerName} </th>
-                    <th>${player.teamName} </th>
+                    <td>${player.playerId}</td>
+                    <td>${player.playerName} </td>
+                    <td>${player.teamName} </td>
                 </tr>`;
     });
 
     playerTableBody.innerHTML=html;
 }
+
+let page=0;
+
 async function init() { 
-    const players = await getPlayers();
+    const players = await fetchData(url,true,page);
     generatePlayerRows(players);
 }   
 
 init();
+
+const nextBtn=document.querySelector("#next");
+nextBtn.addEventListener("click",async ()=>{
+    page++;
+    const players=await fetchData(url,true,page);
+    generatePlayerRows(players);
+});
+
+const prevBtn=document.querySelector("#prev");
+prevBtn.addEventListener("click",async ()=>{
+    if(page>0) page--;
+    const players=await fetchData(url,true,page);
+    generatePlayerRows(players);
+});
+
 
 const addPlayerBtn=document.querySelector("#add-player");
 const deletePlayerBtn=document.querySelector("#delete-player");
@@ -45,9 +66,45 @@ addPlayerBtn.addEventListener("click",()=>{
     deleteModal.style.display="none";
 })
 
+const confirmAddPlayerBtn= document.querySelector("#add-player-ok");
+confirmAddPlayerBtn.addEventListener("click",async ()=>{    
+    const playerName=document.querySelector("#player-name").value; 
+    const response= await fetch("http://localhost:8081/admin/player",{
+        method:"POST",
+        headers:{
+            "content-type":"application/json",
+            "authorization":`Bearer ${localStorage.getItem("accessToken")}`
+        },
+        body:JSON.stringify(playerName)
+    });
+    const data=await response.text();
+    console.log(data);
+    alert(data);
+    if(response.ok){
+        document.querySelector("#add-player-modal").style.display="none";
+        init();
+    }
+})
+
 deletePlayerBtn.addEventListener("click",()=>{
     deleteModal.style.display="flex";
     addModal.style.display="none";
+})
+
+const confirmDeletePlayerBtn=document.querySelector("#delete-player-ok");
+confirmDeletePlayerBtn.addEventListener("click",async ()=>{
+    const playerId=document.querySelector("#player-id").value;
+    const response=await fetch(`http://localhost:8081/admin/player/${playerId}`,{
+        method:"DELETE",
+        headers:{"authorization":`Bearer ${localStorage.getItem("accessToken")}`}
+    });
+    const data=await response.text();
+    if(response.ok){
+        document.querySelector("#delete-player-modal").style.display="none";
+        init();
+    }
+    alert(data);
+    console.log(data);
 })
 
 
@@ -56,3 +113,5 @@ document.querySelectorAll(".modal-cancel").forEach((btn) => {
         btn.closest(".modal").style.display = "none";
     });
 });
+
+
