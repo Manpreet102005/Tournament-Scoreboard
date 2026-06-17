@@ -12,7 +12,7 @@
 }
 
 header {
-    height: 70px;
+    height: 120px;
     background-color: #0d2c54;
     color: white;
     padding: 16px 24px;
@@ -107,11 +107,12 @@ a{
 }
 .nav-bar-tabs{
     width: 100px;
-    height: 50px;
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: large;   
+    font-size: x-large; 
+    font-weight: 500;  
 }
 #nav-bar .active {
     width:120px;
@@ -119,11 +120,10 @@ a{
 }
 table{
     width: 100%;
-    height: 357px;
+    height: 450px;
     border-collapse: separate;  
     border-spacing: 0;
 }
-
 thead tr th{
     position: sticky;
     top: 0;
@@ -135,7 +135,7 @@ thead tr th{
 }
 .table-container {
     width: 100%;
-    max-height: 340px;
+    max-height: 550px;
     overflow-y: auto;
 }
 .scoreboard{
@@ -146,6 +146,7 @@ td {
     padding: 12px;
     text-align: center;
     border-bottom: 1px solid #ddd;
+    flex-shrink: 0;
 }
 .pagination-nav-div{
     width: 100%;
@@ -189,11 +190,20 @@ td {
     align-items: center;
     border: 2px #0d2c54 solid;
     border-radius: 35px;
-    width:250px;
+    width:300px;
     height:280px;
     background-color: white;
 }
-
+.modal-content-pop{
+    width:350px;
+    height:400px;
+}
+.modal-input{
+    height: 28px;
+    width: 80%;
+    border:2px #0d2c54 solid;
+    border-radius: 10px;
+}
 .container{
     display: flex;
     flex-direction: column;
@@ -203,6 +213,7 @@ td {
     overflow-y: auto;
     max-height: 45vh;
 }
+
 .match-card {
     flex-shrink: 0;
 }
@@ -292,4 +303,3 @@ td {
     justify-content: center;
     align-items: center;
 }
-
