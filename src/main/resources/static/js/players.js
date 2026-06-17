@@ -50,14 +50,7 @@ addPlayerBtn.addEventListener("click",()=>{
 const confirmAddPlayerBtn= document.querySelector("#add-player-ok");
 confirmAddPlayerBtn.addEventListener("click",async ()=>{    
     const playerName=document.querySelector("#player-name").value; 
-    const response= await fetch("http://localhost:8081/admin/player",{
-        method:"POST",
-        headers:{
-            "content-type":"application/json",
-            "authorization":`Bearer ${localStorage.getItem("accessToken")}`
-        },
-        body:JSON.stringify(playerName)
-    });
+    const response=await modificationRequest("http://localhost:8081/admin/player","POST",{playerName});
     const data=await response.text();
     console.log(data);
     alert(data);
@@ -75,10 +68,7 @@ deletePlayerBtn.addEventListener("click",()=>{
 const confirmDeletePlayerBtn=document.querySelector("#delete-player-ok");
 confirmDeletePlayerBtn.addEventListener("click",async ()=>{
     const playerId=document.querySelector("#player-id").value;
-    const response=await fetch(`http://localhost:8081/admin/player/${playerId}`,{
-        method:"DELETE",
-        headers:{"authorization":`Bearer ${localStorage.getItem("accessToken")}`}
-    });
+    const response = await modificationRequest(`http://localhost:8081/admin/player/${playerId}`,"DELETE");
     const data=await response.text();
     if(response.ok){
         document.querySelector("#delete-player-modal").style.display="none";

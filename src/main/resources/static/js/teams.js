@@ -1,4 +1,4 @@
-const url="http://localhost:8081/user/team";
+const getAllUrl="http://localhost:8081/user/team";
 
 function generateTeamRows(teams){
     
@@ -18,7 +18,7 @@ function generateTeamRows(teams){
     teamsTableBody.innerHTML=html;
 }
 async function init() { 
-    const teams = await fetchData(url,false);
+    const teams = await fetchData(getAllUrl,false);
     generateTeamRows(teams);
 }   
 
@@ -69,14 +69,7 @@ document.querySelectorAll(".modal-cancel").forEach((btn) => {
 const confirmAddTeamBtn= document.querySelector("#add-team-ok");
 confirmAddTeamBtn.addEventListener("click",async ()=>{    
     const teamName=document.querySelector("#team-name").value; 
-    const response= await fetch("http://localhost:8081/admin/team",{
-        method:"POST",
-        headers:{
-            "content-type":"application/json",
-            "authorization":`Bearer ${localStorage.getItem("accessToken")}`
-        },
-        body:JSON.stringify(teamName)
-    });
+    const response=await modificationRequest("http://localhost:8081/admin/team","POST",{teamName});
     const data=await response.text();
     console.log(data);
     if(response.ok){
@@ -93,10 +86,8 @@ const confirmRenameTeamBtn=document.querySelector("#rename-team-ok");
 confirmRenameTeamBtn.addEventListener("click",async ()=>{
     const teamId=document.querySelector("#rename-team-id");
     const newTeamName=document.querySelector("#new-team-name");
-    const response=await fetch(`http://localhost:8081/admin/team/${teamId.value}/${newTeamName.value}`,{
-        method:"PUT",
-        headers:{"authorization":`Bearer ${localStorage.getItem("accessToken")}`}
-    });
+    const response=await modificationRequest(`http://localhost:8081/admin/team/${teamId.value}/${newTeamName.value}`,
+        "PUT");
     const data=await response.text();
     if(response.ok){
         teamId.value="";
@@ -113,10 +104,7 @@ confirmRenameTeamBtn.addEventListener("click",async ()=>{
 const confirmRemoveTeamBtn=document.querySelector("#remove-team-ok");
 confirmRemoveTeamBtn.addEventListener("click",async ()=>{
     const teamId=document.querySelector("#remove-team-id").value;
-    const response=await fetch(`http://localhost:8081/admin/team/${teamId}`,{
-        method:"DELETE",
-        headers:{"authorization":`Bearer ${localStorage.getItem("accessToken")}`}
-    });
+    const response=await modificationRequest(`http://localhost:8081/admin/team/${teamId}`,"DELETE");
     const data=await response.text();
     if(response.ok){
         document.querySelector("#remove-team-modal").style.display="none";
@@ -132,11 +120,9 @@ const confirmAssignPlayerBtn=document.querySelector("#assign-player-ok");
 confirmAssignPlayerBtn.addEventListener("click",async ()=>{
     const teamId=document.querySelector("#assign-team-id");
     const playerId=document.querySelector("#assign-player-id");
-
-    const response=await fetch(`http://localhost:8081/admin/team/${teamId.value}/player/${playerId.value}`,{
-        method:"PUT",
-        headers:{"authorization":`Bearer ${localStorage.getItem("accessToken")}`}
-    });
+    const response=await modificationRequest(`http://localhost:8081/admin/team/${teamId.value}/player/${playerId.value}`,
+        "PUT"
+    );
     const data=await response.text();
     if(response.ok){
         teamId.value="";

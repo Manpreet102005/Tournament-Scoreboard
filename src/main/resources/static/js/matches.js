@@ -36,6 +36,7 @@ const addMatchBtn=document.querySelector("#add-match");
 const addMatchModal=document.querySelector("#add-match-modal");
 
 addMatchBtn.addEventListener("click",()=>{
+    document.querySelector("#match-date-time").min = new Date().toISOString().slice(0,16);
     addMatchModal.style.display="flex";
 })
 const confirmAddMatchBtn= document.querySelector("#add-match-ok");
@@ -44,15 +45,11 @@ confirmAddMatchBtn.addEventListener("click",async ()=>{
     const matchDateTime=document.querySelector("#match-date-time").value;    
     const teamAId=document.querySelector("#team-A-id").value;
     const teamBId=document.querySelector("#team-B-id").value;   
-    const response= await fetch(`http://localhost:8081/admin/match/${teamAId}/${teamBId}`,{
-        method:"POST",
-        headers:{
-            "content-type":"application/json",
-            "authorization":`Bearer ${localStorage.getItem("accessToken")}`
-        },
-        body:JSON.stringify({
+    const response=await modificationRequest(`http://localhost:8081/admin/match/${teamAId}/${teamBId}`,
+        "POST",
+        {
             matchTitle:matchTitle,
-            matchDateTime:matchDateTime})
+            matchDateTime:matchDateTime
     });
     const data=await response.text();
     console.log(data);
