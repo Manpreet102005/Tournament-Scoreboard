@@ -167,6 +167,8 @@ public class MatchService {
                 match.getMatchId(),
                 match.getMatchTitle(),
                 match.getMatchDateTime(),
+                match.getTeamA().getTeamId(),
+                match.getTeamB().getTeamId(),
                 match.getTeamAName(),
                 match.getTeamBName(),
                 match.getTeamAScore(),

@@ -6,21 +6,26 @@ public class MatchDTO {
     Integer matchId;
     String matchTitle;
     LocalDateTime matchDateTime;
+    private Integer teamAId;
+    private Integer teamBId;
     String teamAName;
     String teamBName;
     Integer teamAScore;
     Integer teamBScore;
     MatchStatus matchStatus;
 
-    public MatchDTO(Integer matchId, String matchTitle, LocalDateTime matchDateTime, String teamAName, String teamBName, Integer teamAScore, Integer teamBScore, MatchStatus matchStatus) {
+    public MatchDTO(Integer matchId, String matchTitle, LocalDateTime matchDateTime, Integer teamAId, Integer teamBId, String teamAName, String teamBName, Integer teamAScore, Integer teamBScore, MatchStatus matchStatus) {
         this.matchId = matchId;
         this.matchTitle = matchTitle;
         this.matchDateTime = matchDateTime;
+        this.teamAId= teamAId;
+        this.teamBId= teamBId;
         this.teamAName = teamAName;
         this.teamBName = teamBName;
         this.teamAScore = teamAScore;
         this.teamBScore = teamBScore;
         this.matchStatus = matchStatus;
+
     }
 
     public Integer getMatchId() {
@@ -53,5 +58,13 @@ public class MatchDTO {
 
     public MatchStatus getMatchStatus() {
         return matchStatus;
+    }
+    
+    public Integer getTeamAId() {
+        return teamAId;
+    }
+
+    public Integer getTeamBId() {
+        return teamBId;
     }
 }

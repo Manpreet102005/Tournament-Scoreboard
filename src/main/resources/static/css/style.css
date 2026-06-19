@@ -214,9 +214,6 @@ td {
     max-height: 45vh;
 }
 
-.match-card {
-    flex-shrink: 0;
-}
 #console-matches-container{
     width:100%;
 }
@@ -229,6 +226,7 @@ td {
     justify-content: space-around;
     height: 120px;
     padding: 10px;
+    flex-shrink: 0;
 }
 .match-info{
     width: 18%;
