@@ -11,7 +11,7 @@ async function generateUserRows(users){
             `
         }
         html+=`
-            <tr class="user-row">
+            <tr id="user-row-${user.username}" class="user-row">
                 <td>${user.username}</td>
                 <td>${user.userRole}</td>
                 <td>${actionContent}</td>
@@ -27,3 +27,23 @@ async function init(){
 }
 
 init();
+let selectedUsername=null;
+document.querySelector("#user-body").addEventListener("click", (e) => {
+    if(e.target.classList.contains("promote-btn")){
+        selectedUsername=e.target.closest(".user-row").id.replace("user-row-","");
+        document.querySelector("#promote-to-admin").style.display="flex";
+    }  
+})
+
+document.querySelector("#make-admin-ok").addEventListener("click",async () => {
+    const response=await modificationRequest(`http://localhost:8081/admin/user/promote/${selectedUsername}`,"PUT");
+    document.querySelector("#promote-to-admin").style.display="none";
+    init();
+    if(!response.ok){
+        const data=await response.text();
+        alert(data);
+    }
+})
+document.querySelector("#make-admin-cancel").addEventListener("click",async () => {
+    document.querySelector("#promote-to-admin").style.display="none";
+})

@@ -2,6 +2,9 @@ function generateOngoingMatchCards(ongoingMatches){
     
     const ongoingContainer=document.querySelector("#ongoing-container");
     let html="";
+    if(ongoingMatches.length==0){
+        html+="<h3>No Ongoing Matches</h3>"
+    }
     ongoingMatches.forEach((ongoingMatch) => {
         html+=`
             <div id="card-${ongoingMatch.matchId}" class="match-card " data-team-a-id="${ongoingMatch.teamAId}" data-team-b-id="${ongoingMatch.teamBId}">
@@ -25,6 +28,9 @@ function generateScheduledMatchCards(scheduledMatches){
     
     const scheduledContainer=document.querySelector("#scheduled-container");
     let html="";
+    if(scheduledMatches.length==0){
+        html+="<h3>No Scheduled Matches</h3>"
+    }
     scheduledMatches.forEach((scheduledMatch) => {
         html+=`
             <div id="card-${scheduledMatch.matchId}" class="match-card">
@@ -49,6 +55,9 @@ function generateCompletedMatchCards(completedMatches){
     
     const completedContainer=document.querySelector("#completed-container");
     let html="";
+    if(completedMatches.length==0){
+        html+="<h3>No Completed Matches</h3>"
+    }
     completedMatches.forEach((completedMatch) => {
         let winnerName = completedMatch.teamAScore > completedMatch.teamBScore ? completedMatch.teamAName : (completedMatch.teamAScore < completedMatch.teamBScore ? completedMatch.teamBName : 'DRAW');
         html+=`
