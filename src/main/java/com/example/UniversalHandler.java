@@ -21,11 +21,6 @@ public class UniversalHandler {
         return ResponseEntity.status(404).body(e.getMessage());
     }
 
-    @ExceptionHandler(PlayerNameAlreadyExists.class)
-    public ResponseEntity<String> handle(PlayerNameAlreadyExists e){
-        return ResponseEntity.status(409).body(e.getMessage());
-    }
-
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<String> validateHandle(MethodArgumentNotValidException e){
         return ResponseEntity.badRequest().body(e.getBindingResult().

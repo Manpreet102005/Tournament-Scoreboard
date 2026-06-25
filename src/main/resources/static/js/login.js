@@ -8,7 +8,7 @@ const login=document.querySelector("#login-button");
 register.addEventListener("click",()=>{
     register.classList.add("active");
     login.classList.remove("active");
-    message.innerHTML = "Username: 3-20 characters, letters & numbers only<br>Password: 3-20 characters";
+    message.innerHTML = "Username: 6-20 characters, letters & numbers only<br>Password: 3-20 characters";
 })
 login.addEventListener("click",()=>{
     login.classList.add("active");
