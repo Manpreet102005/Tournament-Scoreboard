@@ -34,11 +34,6 @@ submit.addEventListener("click",async ()=>{
             body:JSON.stringify({username:username.value,password:password.value})
         });
     
-    if(!response.ok){
-        console.log(response.status);
-        message.textContent="Login Failed. Try Again"
-        return;
-    }
     if(mode=="login"){
         const data= await response.json();
         localStorage.setItem("accessToken",data.accessToken);
@@ -52,7 +47,11 @@ submit.addEventListener("click",async ()=>{
     }
     else{
         const data= await response.text();
-        const message=document.querySelector("#message")
+        if(!response.ok){
+            console.log(response.status);
+            message.textContent=data;
+            return;
+        }
         message.textContent=data+"Login to Proceed.";
         login.classList.add("active");
         register.classList.remove("active");

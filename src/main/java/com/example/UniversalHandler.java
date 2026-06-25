@@ -7,6 +7,7 @@ import com.example.Team.exceptions.TeamAlreadyAssignedException;
 import com.example.Team.exceptions.TeamNameAlreadyExist;
 import com.example.Team.exceptions.TeamNotFoundException;
 import com.example.Team.exceptions.TeamNotPartOfMatchException;
+import com.example.User.exceptions.UserAlreadyExists;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -83,6 +84,12 @@ public class UniversalHandler {
         return ResponseEntity.badRequest().body("Invalid parameter type: " + e.getMessage());
     }
 
+    @ExceptionHandler(UserAlreadyExists.class)
+    public ResponseEntity<String> handle(UserAlreadyExists e){
+        return ResponseEntity.status(409).body(e.getMessage());
+    }
+
+    
     @ExceptionHandler(Exception.class)
     public ResponseEntity<String> handle(Exception e){
         return ResponseEntity.status(500).body("An unexpected error occurred: " + e.getMessage());

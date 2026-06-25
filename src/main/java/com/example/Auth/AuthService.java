@@ -2,6 +2,7 @@ package com.example.Auth;
 
 import com.example.User.*;
 import com.example.Security.JwtUtil;
+import com.example.User.exceptions.UserAlreadyExists;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -24,6 +25,9 @@ public class AuthService {
     }
 
     public ResponseEntity<String> register(User user) {
+        if(userRepository.existsById(user.getUsername())){
+            throw new UserAlreadyExists(user.getUsername());
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setUserRole(UserRole.ROLE_USER);
         userRepository.save(user);
