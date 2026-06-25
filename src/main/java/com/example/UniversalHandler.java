@@ -74,6 +74,11 @@ public class UniversalHandler {
         return ResponseEntity.badRequest().body(e.getMessage());
     }
 
+    @ExceptionHandler(CantStartMatchWithEmptyTeamException.class)
+    public ResponseEntity<String> handle(CantStartMatchWithEmptyTeamException e){
+        return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
     @ExceptionHandler(MethodArgumentTypeMismatchException.class)
     public ResponseEntity<String> handle(MethodArgumentTypeMismatchException e){
         return ResponseEntity.badRequest().body("Invalid parameter type: " + e.getMessage());

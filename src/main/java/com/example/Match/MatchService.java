@@ -61,6 +61,10 @@ public class MatchService {
         Team teamB=teamRepository.findById(teamBId).orElseThrow(()->
                 new TeamNotFoundException(teamBId)
         );
+        
+        if(teamA.getPlayers().isEmpty() || teamB.getPlayers().isEmpty()){
+            throw new CantStartMatchWithEmptyTeamException();
+        }
 
         match.setTeamA(teamA);
         match.setTeamB(teamB);
