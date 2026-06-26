@@ -1,7 +1,6 @@
 package com.example;
 
 import com.example.Match.exceptions.*;
-import com.example.Player.exceptions.PlayerNameAlreadyExists;
 import com.example.Player.exceptions.PlayerNotFoundException;
 import com.example.Team.exceptions.TeamAlreadyAssignedException;
 import com.example.Team.exceptions.TeamNameAlreadyExist;

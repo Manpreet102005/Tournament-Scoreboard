@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/scoreboard")
 public class ScoreboardController {
-    private ScoreboardService scoreboardService;
+    private final ScoreboardService scoreboardService;
 
     public ScoreboardController(ScoreboardService scoreboardService){
         this.scoreboardService=scoreboardService;

@@ -8,7 +8,6 @@ import java.util.List;
 
 @Repository
 public interface PlayerRepository extends JpaRepository<Player,Integer> {
-    boolean existsByPlayerName(String playerName);
 
     List<Player> findPlayersByTeam(Team team);
 }

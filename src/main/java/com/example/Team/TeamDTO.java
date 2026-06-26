@@ -1,12 +1,12 @@
 package com.example.Team;
 
 public class TeamDTO {
-    private Integer rank;
-    private String teamName;
-    private Integer totalScore;
-    private Integer matchesPlayed;
-    private Integer wins;
-    private Double winRatio;
+    private final Integer rank;
+    private final String teamName;
+    private final Integer totalScore;
+    private final Integer matchesPlayed;
+    private final Integer wins;
+    private final Double winRatio;
 
     public TeamDTO(Integer rank, String teamName, Integer totalScore, Integer matchesPlayed, Integer wins, Double winRatio) {
         this.rank=rank;

@@ -1,15 +1,11 @@
 package com.example.Player;
 
 
-import com.example.Player.exceptions.PlayerNameAlreadyExists;
 import com.example.Player.exceptions.PlayerNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
-
-import java.util.List;
 
 @Service
 public class PlayerService {
