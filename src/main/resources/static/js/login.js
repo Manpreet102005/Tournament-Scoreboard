@@ -8,7 +8,7 @@ const login=document.querySelector("#login-button");
 register.addEventListener("click",()=>{
     register.classList.add("active");
     login.classList.remove("active");
-    message.innerHTML = "Username: 6-20 characters, letters & numbers only<br>Password: 3-20 characters";
+    message.innerHTML = "Username: 6-20 characters, letters & numbers only<br>Password: 6-30 characters";
 })
 login.addEventListener("click",()=>{
     login.classList.add("active");
@@ -37,8 +37,8 @@ submit.addEventListener("click",async ()=>{
             message.textContent="Username must be 6-20 characters";
             return;
         }
-        if(password.value.length<6){
-            message.textContent="Password must be atleast 6 characters";
+        if(password.value.length<6 ||password.value.length>30){
+            message.textContent="Password must be 6-30 characters";
             return;
         }
         for(let char of username.value){
@@ -77,6 +77,8 @@ submit.addEventListener("click",async ()=>{
         login.classList.add("active");
         register.classList.remove("active");
         password.value="";
+        submit.textContent="Submit";
+        submit.disabled=false;
     }
     }catch(e){
         message.textContent="Server not reachable. Try again later.";
