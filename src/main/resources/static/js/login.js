@@ -37,8 +37,8 @@ submit.addEventListener("click",async ()=>{
             message.textContent="Username must be 3-20 characters";
             return;
         }
-        if(password.value.length<3 || password.value.length>20){
-            message.textContent="Password must be 3-20 characters";
+        if(password.value.length<6){
+            message.textContent="Password must be atleast 6 characters";
             return;
         }
         for(let char of username.value){
