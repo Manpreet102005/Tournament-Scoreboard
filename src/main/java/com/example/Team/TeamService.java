@@ -74,7 +74,7 @@ public class TeamService {
         Team team=teamRepository.findById(teamId).orElseThrow(()->
                 new TeamNotFoundException(teamId));
         String oldName=team.getTeamName();
-        if(oldName.equals(newTeamName)){
+        if(oldName.equals(newTeamName) || teamRepository.existsByTeamName(newTeamName)){
             throw new TeamNameAlreadyExist(oldName);
         }
         team.setTeamName(newTeamName);
