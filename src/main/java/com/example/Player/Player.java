@@ -12,7 +12,6 @@ public class Player {
     private Integer playerId;
 
     @NotBlank(message="Name of player can't be blank")
-    @Column(unique = true)
     private String playerName;
 
     @ManyToOne(fetch = FetchType.LAZY)
